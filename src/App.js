@@ -136,13 +136,7 @@ const Dinosaur = () => {
 
 export default function App() {
   return (
-    <div style={{ width: "100%", margin: "0 auto" }}>
-      <p>Click and hold to move around</p>
-      <p>
-        Credits for the model: "Dinosaur" (https://skfb.ly/6ZBXA) by
-        jeilocreativedesignworld is licensed under Creative Commons Attribution
-        (http://creativecommons.org/licenses/by/4.0/).
-      </p>
+    <div style={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Dinosaur />
     </div>
   );
