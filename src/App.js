@@ -1,25 +1,33 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef, useEffect, useLayoutEffect } from "react";
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { useGLTF, Html, useAnimations, OrbitControls, Stage } from '@react-three/drei';
 import Model from './Model';
 
 export default function App() {
-   return (
+
+  return (
       <Canvas
-         camera={{ position: [2, 0, 12.25], fov: 15 }}
-         style={{
-            backgroundColor: '#111a21',
-            width: '100vw',
-            height: '100vh',
-         }}
+        gl={{ preserveDrawingBuffer: true }}
+        shadows={true}
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 20, 100], fov: 50 }}
+        style={{
+          backgroundColor: '#111a21',
+          width: '100vw',
+          height: '100vh',
+        }}
       >
-         <ambientLight intensity={1.25} />
-         <ambientLight intensity={0.1} />
-         <directionalLight intensity={0.4} />
-         <Suspense fallback={null}>
-            <Model position={[0.025, -0.9, 1]} />
-         </Suspense>
-         <OrbitControls />
+        <ambientLight intensity={0.25} />
+        <Suspense fallback={null}>
+          <Stage
+            adjustCamera intensity={0.5}
+          >
+          <Model />
+          </Stage>
+        </Suspense>
+        <OrbitControls autoRotate />
       </Canvas>
-   );
+  );
 }
+
+useGLTF.preload('https://models.readyplayer.me/64eff5301db75f90dcfd6832.glb');
