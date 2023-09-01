@@ -25,7 +25,7 @@ export default function App() {
           <Model />
           </Stage>
         </Suspense>
-        <OrbitControls autoRotate />
+        <OrbitControls />
       </Canvas>
   );
 }

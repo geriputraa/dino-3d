@@ -7,8 +7,12 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export default function Model({ ...props }) {
   const group = useRef();
-  const { nodes, materials, animations, scene } = useGLTF('https://models.readyplayer.me/64eff5301db75f90dcfd6832.glb');
-  const { actions } = useAnimations(animations, group);
+  const { nodes, materials, animations, scene } = useGLTF('./model-riging.glb');
+  const { actions, names } = useAnimations(animations, group);
+
+  useEffect(() => {
+    actions[names].play();
+  });
 
   useLayoutEffect(() => {
     scene.traverse((obj) => {
@@ -19,10 +23,10 @@ export default function Model({ ...props }) {
   }, [scene])
 
   return (
-    <group {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <primitive object={scene} />
     </group>
   );
 }
 
-useGLTF.preload('https://models.readyplayer.me/64eff5301db75f90dcfd6832.glb');
+useGLTF.preload('./model-riging.glb');
